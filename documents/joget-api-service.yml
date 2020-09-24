@@ -26,6 +26,88 @@ paths:
       - application/json
       parameters:
       - in: body
+        name: account
+        description: account to add
+        schema:
+          $ref: '#/definitions/account'
+      responses:
+        200:
+          description: ok
+        500:
+          description: internal server error
+  /role:
+    get:
+      tags:
+          - account
+      summary: get information of all account
+      description: get information of all account to public server
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        200:
+          description: ok
+        204:
+          description: no content
+        500:
+          description: internal server error
+  /role/{id}:
+    get:
+      tags:
+          - account
+      summary: get information of specification account id
+      description: get information of specification account id to public server
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+          - in: path
+            name: id
+            required: true
+            type: string
+      responses:
+        200:
+          description: ok
+        204:
+          description: no content
+        500:
+          description: internal server error
+    put:
+      tags:
+          - account
+      summary: update account of specification account id
+      description: update account of specification account id to public server
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: account
+        description: account to add
+        schema:
+          $ref: '#/definitions/account'
+      responses:
+        200:
+          description: ok
+        204:
+          description: no content
+        500:
+          description: internal server error
+  /auth/login:
+    post:
+      tags:
+      - authentication
+      summary: redirect with login from role
+      description: redirect with login from role to public server
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
         name: role
         description: role to redirect
         schema:
@@ -40,31 +122,6 @@ paths:
           description: redirect to joget with login
         404:
           description: not found
-        500:
-          description: internal server error
-  /role:
-    get:
-      tags:
-          - account
-  /auth/login:
-    post:
-      tags:
-      - authentication
-      summary: redirect with login from role
-      description: redirect with login from role to public server
-      consumes:
-      - application/json
-      produces:
-      - application/json
-      parameters:
-      - in: body
-        name: account
-        description: account to add
-        schema:
-          $ref: '#/definitions/account'
-      responses:
-        200:
-          description: ok
         500:
           description: internal server error
 definitions:
