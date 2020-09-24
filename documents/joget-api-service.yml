@@ -31,8 +31,12 @@ paths:
         schema:
           $ref: '#/definitions/account'
       responses:
-        200:
-          description: ok
+        201:
+          description: Created
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/account'
         500:
           description: internal server error
   /role:
@@ -84,6 +88,10 @@ paths:
       produces:
       - application/json
       parameters:
+      - in: path
+        name: id
+        required: true
+        type: string
       - in: body
         name: account
         description: account to add
@@ -94,6 +102,27 @@ paths:
           description: ok
         204:
           description: no content
+        500:
+          description: internal server error
+    delete:
+      tags:
+          - account
+      summary: delete account of specification account id
+      description: delete account of specification account id to public server
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        204:
+          description: no content
+        404:
+          description: not found
         500:
           description: internal server error
   /auth/login:
