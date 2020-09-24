@@ -39,37 +39,18 @@ paths:
               $ref: '#/definitions/account'
         500:
           description: internal server error
-  /role:
     get:
       tags:
           - account
-      summary: get information of all account
-      description: get information of all account to public server
-      consumes:
-      - application/json
-      produces:
-      - application/json
-      responses:
-        200:
-          description: ok
-        204:
-          description: no content
-        500:
-          description: internal server error
-  /role/{id}:
-    get:
-      tags:
-          - account
-      summary: get information of specification account id
-      description: get information of specification account id to public server
+      summary: get all information or of specification account id
+      description: get all information or of specification account id to public server
       consumes:
       - application/json
       produces:
       - application/json
       parameters:
-          - in: path
+          - in: query
             name: id
-            required: true
             type: string
       responses:
         200:
@@ -78,6 +59,7 @@ paths:
           description: no content
         500:
           description: internal server error
+  /account/{id}:
     put:
       tags:
           - account
@@ -169,3 +151,9 @@ definitions:
       role:
         type: string
         example: admin
+      name:
+        type: string
+        example: joget
+      createDate:
+        type: string
+        example: 24-06-2020 03.54 PM

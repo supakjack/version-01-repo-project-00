@@ -1,19 +1,16 @@
 const express = require('express')
-const cors = require('cors')
+const createError = require('http-errors')
 
 const app = express()
-app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-const jogetRoute = require('./routers/jogetRoute')
+const authRoute = require('./routers/authRoute')
+const accountRoute = require('./routers/accountRoute')
 
-app.get('/', async (req, res, next) => {
-  const data = 'Hello Phurk'
-  res.send({ data })
-})
 
-app.use('/joget', jogetRoute)
+app.use('/auth', authRoute)
+app.use('/account', accountRoute)
 
 
 app.use(async (req, res, next) => {
@@ -21,6 +18,7 @@ app.use(async (req, res, next) => {
 })
 
 app.use((err, req, res, next) => {
+  if (err.isJoi === true) err.status = 422
   res.status(err.status || 500)
   res.send({
     error: {
@@ -30,8 +28,8 @@ app.use((err, req, res, next) => {
   })
 })
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 4000
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`)
+  console.log(`Server running on http://localhost:${PORT}`)
 })
