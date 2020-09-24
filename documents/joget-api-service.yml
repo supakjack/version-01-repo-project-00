@@ -1,0 +1,85 @@
+swagger: '2.0'
+host: localhost:4000
+basePath: /
+schemes:
+  - http
+info:
+  description: Joget Api Service
+  version: 1.0.0
+  title: Joget Service REST API  
+
+tags:
+- name: authentication
+  description: REST API for authentication-only calls
+- name: account
+  description: REST API for account-only calls
+paths:
+  /account:
+    post:
+      tags:
+      - account
+      summary: add account
+      description: add account to joget account list 
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: role
+        description: role to redirect
+        schema:
+          type: object
+          required:
+            - role
+          properties: 
+            role:
+              type: string
+      responses:
+        302:
+          description: redirect to joget with login
+        404:
+          description: not found
+        500:
+          description: internal server error
+  /role:
+    get:
+      tags:
+          - account
+  /auth/login:
+    post:
+      tags:
+      - authentication
+      summary: redirect with login from role
+      description: redirect with login from role to public server
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: account
+        description: account to add
+        schema:
+          $ref: '#/definitions/account'
+      responses:
+        200:
+          description: ok
+        500:
+          description: internal server error
+definitions:
+  account:
+    type: object
+    properties:
+      username:
+        type: string
+        example: phurk
+      password:
+        type: string
+        example: phurk@123
+      url:
+        type: string
+        example: http://phurkjoget/jw/home/
+      role:
+        type: string
+        example: admin
