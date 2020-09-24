@@ -141,7 +141,7 @@ paths:
           description: NotFound
         500:
           description: Internal Server Error
-  /users:
+  /user:
     post:
       tags:
       - "users"
@@ -200,7 +200,7 @@ paths:
           description: Unauthorize
         500:
           description: Internal Server Error
-  /users/{username}:
+  /user/{username}:
     get:
       tags:
       - "users"
@@ -250,7 +250,7 @@ paths:
           description: Unauthorized
         500:
           description: Internal Server Error
-  /services:
+  /service:
     post:
       tags:
       - "services"
@@ -280,7 +280,7 @@ paths:
           description: Unauthorized
         500:
           description: Internal Server Error
-  /privates/{name}/{role}:
+  /private/{name}/{role}:
     get:
       tags:
       - "privates"
