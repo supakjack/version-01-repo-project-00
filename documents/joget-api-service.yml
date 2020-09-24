@@ -7,7 +7,7 @@ info:
   description: Joget Api Service
   version: 1.0.0
   title: Joget Service REST API  
-
+  
 tags:
 - name: authentication
   description: REST API for authentication-only calls
