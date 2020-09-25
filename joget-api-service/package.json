@@ -16,6 +16,7 @@
     "http-errors": "^1.8.0",
     "js-base64": "^3.5.2",
     "mongoose": "^5.10.7",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "redis": "^3.0.2"
   }
 }
