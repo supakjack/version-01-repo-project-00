@@ -1,6 +1,7 @@
 const joi = require('@hapi/joi')
 
 const authLoginSchema = joi.object({
+  name: joi.string().required(),
   role: joi.string().required()
 })
 
