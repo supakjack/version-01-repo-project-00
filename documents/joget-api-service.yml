@@ -124,9 +124,14 @@ paths:
           type: object
           required:
             - role
+            - name
           properties: 
             role:
               type: string
+              example: admin
+            name:
+              type: string
+              example: joget
       responses:
         302:
           description: redirect to joget with login

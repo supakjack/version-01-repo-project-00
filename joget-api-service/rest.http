@@ -9,7 +9,8 @@ POST http://localhost:4000/auth/login
 Content-Type: application/json
 
 {
-    "role":"admin"
+    "role":"user",
+    "name": "joget"
 }
 
 # account REST API for account-only calls
@@ -39,7 +40,7 @@ GET http://localhost:4000/account?id=5f6d73f25b559328b473a0c3
 
 ### PUT ​/account/{id}
 ### update account of specification account id to public server
-PUT http://localhost:4000/account?id=5f6d73f25b559328b473a0c3
+PUT http://localhost:4000/account?id=5f6d77179993304d4cb51a91
 Content-Type: application/json
 
 {
