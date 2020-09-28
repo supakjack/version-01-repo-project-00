@@ -23,7 +23,7 @@ POST http://localhost:4000/account
 Content-Type: application/json
 
 {
-  "username": "phurk",
+  "username": "phurk1",
   "password": "phurk@123",
   "url": "http://phurkjoget/jw/home/",
   "role": "admin",
@@ -34,13 +34,13 @@ Content-Type: application/json
 
 ### GET ​/account
 ### get information of all account to public server
-GET http://localhost:4000/account?id=5f6d73f25b559328b473a0c3
+GET http://localhost:4000/account?id=5f6d73d9ea7a2145e8f93083
 
 ## PUT
 
 ### PUT ​/account/{id}
 ### update account of specification account id to public server
-PUT http://localhost:4000/account?id=5f6d77179993304d4cb51a91
+PUT http://localhost:4000/account?id=5f7170ca0b9a4813e0295348
 Content-Type: application/json
 
 {
@@ -48,12 +48,12 @@ Content-Type: application/json
   "password": "phurk@123",
   "name": "joget",
   "url": "http://phurkjoget/jw/home/",
-  "role": "user"
+  "role": "admin"
 }
 
 ## DELETE
 
 ### DELETE ​/account/{id}
 ### delete account of specification account id to public server
-DELETE http://localhost:4000/account?id=5f6d73f25b559328b473a0c3
+DELETE http://localhost:4000/account?id=5f719719cac536584c510690
 Content-Type: application/json
