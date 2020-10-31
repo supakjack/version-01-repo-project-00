@@ -1,57 +1,63 @@
-swagger: '2.0'
+swagger: "2.0"
 host: localhost:4000
 basePath: /
 schemes:
   - http
 info:
-  description: Joget Api Service
+  description: Public Server
   version: 1.0.0
-  title: Joget Service REST API  
-  
+  title: Public Server REST API
 tags:
-- name: authentication
-  description: REST API for authentication-only calls
-- name: account
-  description: REST API for account-only calls
+  - name: authentication
+    description: REST API for authentication-only calls
+  - name: account
+    description: REST API for account-only calls
 paths:
+  
   /account:
     post:
       tags:
-      - account
+        - account
       summary: add account
-      description: add account to joget account list 
+      description: add account to joget account list
       consumes:
-      - application/json
+        - application/json
       produces:
-      - application/json
+        - application/json
       parameters:
-      - in: body
-        name: account
-        description: account to add
-        schema:
-          $ref: '#/definitions/account'
+        - in: header
+          name: Authorization
+          description: JWT Token
+        - in: body
+          name: account
+          description: account to add
+          schema:
+            $ref: "#/definitions/account"
       responses:
         201:
           description: Created
           schema:
             type: array
             items:
-              $ref: '#/definitions/account'
+              $ref: "#/definitions/account"
         500:
           description: internal server error
     get:
       tags:
-          - account
+        - account
       summary: get all information or of specification account id
       description: get all information or of specification account id to public server
       consumes:
-      - application/json
+        - application/json
       produces:
-      - application/json
+        - application/json
       parameters:
-          - in: query
-            name: id
-            type: string
+        - in: header
+          name: Authorization
+          description: JWT Token
+        - in: query
+          name: id
+          type: string
       responses:
         200:
           description: ok
@@ -61,23 +67,26 @@ paths:
           description: internal server error
     put:
       tags:
-          - account
+        - account
       summary: update account of specification account id
       description: update account of specification account id to public server
       consumes:
-      - application/json
+        - application/json
       produces:
-      - application/json
+        - application/json
       parameters:
-      - in: query
-        name: id
-        required: true
-        type: string
-      - in: body
-        name: account
-        description: account to add
-        schema:
-          $ref: '#/definitions/account'
+        - in: header
+          name: Authorization
+          description: JWT Token
+        - in: query
+          name: id
+          required: true
+          type: string
+        - in: body
+          name: account
+          description: account to add
+          schema:
+            $ref: "#/definitions/account"
       responses:
         200:
           description: ok
@@ -87,18 +96,21 @@ paths:
           description: internal server error
     delete:
       tags:
-          - account
+        - account
       summary: delete account of specification account id
       description: delete account of specification account id to public server
       consumes:
-      - application/json
+        - application/json
       produces:
-      - application/json
+        - application/json
       parameters:
-      - in: query
-        name: id
-        required: true
-        type: string
+        - in: header
+          name: Authorization
+          description: JWT Token
+        - in: query
+          name: id
+          required: true
+          type: string
       responses:
         204:
           description: no content
@@ -106,58 +118,371 @@ paths:
           description: not found
         500:
           description: internal server error
+  
+    
+  /auth:
+    post:
+      tags:
+        - auth
+      summary: add auth
+      description: add auth to joget auth list
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          description: JWT Token
+        - in: body
+          name: auth
+          description: auth to add
+          schema:
+            $ref: "#/definitions/auth"
+      responses:
+        201:
+          description: Created
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/auth"
+        500:
+          description: internal server error
+    get:
+      tags:
+        - auth
+      summary: get all information or of specification auth id
+      description: get all information or of specification auth id to public server
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          description: JWT Token
+        - in: query
+          name: id
+          type: string
+      responses:
+        200:
+          description: ok
+        204:
+          description: no content
+        500:
+          description: internal server error
+    put:
+      tags:
+        - auth
+      summary: update auth of specification auth id
+      description: update auth of specification auth id to public server
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          description: JWT Token
+        - in: query
+          name: id
+          required: true
+          type: string
+        - in: body
+          name: auth
+          description: auth to add
+          schema:
+            $ref: "#/definitions/auth"
+      responses:
+        200:
+          description: ok
+        204:
+          description: no content
+        500:
+          description: internal server error
+    delete:
+      tags:
+        - auth
+      summary: delete auth of specification auth id
+      description: delete auth of specification auth id to public server
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          description: JWT Token
+        - in: query
+          name: id
+          required: true
+          type: string
+      responses:
+        204:
+          description: no content
+        404:
+          description: not found
+        500:
+          description: internal server error
+  
+      
+  /service:
+    post:
+      tags:
+        - service
+      summary: add service
+      description: add service to joget service list
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          description: JWT Token
+        - in: body
+          name: service
+          description: service to add
+          schema:
+            $ref: "#/definitions/service"
+      responses:
+        201:
+          description: Created
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/service"
+        500:
+          description: internal server error
+    get:
+      tags:
+        - service
+      summary: get all information or of specification service id
+      description: get all information or of specification service id to public server
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          description: JWT Token
+        - in: query
+          name: id
+          type: string
+      responses:
+        200:
+          description: ok
+        204:
+          description: no content
+        500:
+          description: internal server error
+    put:
+      tags:
+        - service
+      summary: update service of specification service id
+      description: update service of specification service id to public server
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          description: JWT Token
+        - in: query
+          name: id
+          required: true
+          type: string
+        - in: body
+          name: service
+          description: service to add
+          schema:
+            $ref: "#/definitions/service"
+      responses:
+        200:
+          description: ok
+        204:
+          description: no content
+        500:
+          description: internal server error
+    delete:
+      tags:
+        - service
+      summary: delete service of specification service id
+      description: delete service of specification service id to public server
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          description: JWT Token
+        - in: query
+          name: id
+          required: true
+          type: string
+      responses:
+        204:
+          description: no content
+        404:
+          description: not found
+        500:
+          description: internal server error
+  
+
   /auth/login:
     post:
       tags:
-      - authentication
-      summary: redirect with login from role
-      description: redirect with login from role to public server
+        - authentication
+      summary: get Access Token and Refresh
+      description: get Access Token and Refresh from public server
       consumes:
-      - application/json
+        - application/json
       produces:
-      - application/json
+        - application/json
       parameters:
-      - in: body
-        name: role
-        description: role to redirect
-        schema:
-          type: object
-          required:
-            - role
-            - name
-          properties: 
-            role:
-              type: string
-              example: admin
-            name:
-              type: string
-              example: joget
+        - in: body
+          name: Auth
+          description: authentication to login
+          schema:
+            type: object
+            required:
+              - usename
+              - password
+            properties:
+              usename:
+                type: string
+                example: phurk
+              password:
+                type: string
+                example: phurk@123
       responses:
         302:
-          description: redirect to joget with login
+          description: get Access Token and Refresh from public server
+        404:
+          description: not found
+        500:
+          description: internal server error
+  /auth/logout:
+    post:
+      tags:
+        - authentication
+      summary: destroy Refresh Token
+      description: destroy Refresh Token from public server
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          description: JWT Token
+      responses:
+        200:
+          description: destroy Refresh Token from public server
         404:
           description: not found
         500:
           description: internal server error
 definitions:
-  account:
+  auth:
     type: object
     properties:
+      _id:
+        type: objectId
+        example: 5f87ebde67de9115b4a45a1c
       username:
         type: string
         example: phurk
       password:
         type: string
-        example: phurk@123
-      url:
-        type: string
-        example: http://phurkjoget/jw/home/
-      role:
+        example: $2b$10$ZnNDyzDqvLS7lKa331e6i.XHK7vXjrIHg43zMETfmuNJYaVkv/MWC
+      permission:
         type: string
         example: admin
+      status:
+        type: string
+        example: active
+      createDate:
+        type: string
+        example: 24-06-2020 03.54 PM
+  account:
+    type: object
+    properties:
+      _id:
+        type: objectId
+        example: 5f87ebde67de9115b4a45a1c
+      username:
+        type: string
+        example: phurk
+      password:
+        type: string
+        example: cGh1cmtAMTIz
+      permission:
+        type: string
+        example: admin
+      status:
+        type: string
+        example: active
+      createDate:
+        type: string
+        example: 24-06-2020 03.54 PM
+  service:
+    type: object
+    properties:
+      _id:
+        type: objectId
+        example: 5f87ebde67de9115b4a45a1c
       name:
         type: string
-        example: joget
+        example: phurk
+      url:
+        type: string
+        example: http://xxx.xx.xxx.x:xxxx/jw/web/userview/xxxx
+      icon:
+        type: string
+        example: joget.jpg
+      status:
+        type: string
+        example: active
+      createDate:
+        type: string
+        example: 24-06-2020 03.54 PM
+  role:
+    type: object
+    properties:
+      _id:
+        type: objectId
+        example: 5f87ebde67de9115b4a45a1c
+      service:
+        type: objectId
+        example: 5f87ebde67de9115b4a45a11
+      account:
+        type: objectId
+        example: 5f87ebde67de9115b4a45a12
+      status:
+        type: string
+        example: active
+      createDate:
+        type: string
+        example: 24-06-2020 03.54 PM
+  enroll:
+    type: object
+    properties:
+      _id:
+        type: objectId
+        example: 5f87ebde67de9115b4a45a1c
+      auth:
+        type: objectId
+        example: 5f87ebde67de9115b4a45a11
+      role:
+        type: objectId
+        example: 5f87ebde67de9115b4a45a12
+      status:
+        type: string
+        example: active
       createDate:
         type: string
         example: 24-06-2020 03.54 PM

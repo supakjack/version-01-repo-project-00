@@ -1,0 +1,358 @@
+swagger: "2.0"
+info:
+  description: "This is a sample server Authen server"
+  version: "1.0.0"
+  title: "Authen-Authorization-Service "
+  contact:
+    email: "phukeiei@gmail.com"
+host: "localhost:3000"
+tags:
+- name: "users"
+  description: "Everything about your Users"
+- name: "auth"
+  description: "Everything about your Auth"
+- name: "services"
+  description: "Everything about your Service"
+- name: "privates"
+  description: "Everything about your Private"
+schemes:
+- "http"
+paths:
+
+  /auth/register:
+    post:
+      tags:
+      - "auth"
+      summary: register in the system
+      description: register in the system
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: header
+        name: Authorization
+        type: string
+        description: Access Token in system
+        default: "Bearer "
+      - in: body
+        name: user
+        description: user in system
+        schema:
+          $ref: '#/definitions/Login'
+      responses:
+        201:
+          description: user created
+        400:
+          description: invalid input, object invalid
+        500:
+          description: Internal Server Error
+  /auth/login:
+    post:
+      tags:
+      - "auth"
+      summary: login
+      description: login to the system
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: user
+        description: user in system
+        schema:
+          $ref: '#/definitions/Login'
+      responses:
+        201:
+          description: Login success
+        400:
+          description: invalid input, object invalid
+        500:
+          description: Internal Server Error
+  /auth/logout:
+    post:
+      tags:
+      - "auth"
+      summary: logout
+      description: logout from the system
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: refreshToken
+        description: Refresh Token in system
+        schema:
+          $ref: '#/definitions/Refresh_Token'
+      responses:
+        200:
+          description: Logout success
+        401:
+          description: Unauthorized
+        500:
+          description: Internal Server Error          
+  /auth/secret:
+    post:
+      tags:
+      - "auth"
+      summary: refresh token
+      description: refresh token from the system
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: refreshToken
+        description: Refresh Token in system
+        schema:
+          $ref: '#/definitions/Refresh_Token'
+      responses:
+        200:
+          description: OK
+        401:
+          description: Unauthorized
+        500:
+          description: Internal Server Error
+  /:
+    get:
+      tags:
+      - "auth"
+      summary: check login
+      description:  check login to the system
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: header
+        name: Authorization
+        type: string
+        description: Access Token in system
+        default: "Bearer "
+      responses:
+        200:
+          description: OK
+        401:
+          description: Unauthorized
+        404:
+          description: NotFound
+        500:
+          description: Internal Server Error
+  /user:
+    post:
+      tags:
+      - "users"
+      summary: add user
+      description: user in the system
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: header
+        name: Authorization
+        type: string
+        description: Access Token in system
+        default: "Bearer "
+      - in: body
+        name: user
+        description: user in system
+        schema:
+          $ref: '#/definitions/User'
+      responses:
+        201:
+          description: user created
+        400:
+          description: invalid input, object invalid
+        401:
+          description: Unauthorized
+        500:
+          description: Internal Server Error
+    get:
+      tags:
+      - "users"
+      summary: show users
+      description: user in the system
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: header
+        name: Authorization
+        type: string
+        description: Access Token in system
+        default: "Bearer "
+      - in: body
+        name: user
+        description: users in system
+        schema:
+          $ref: '#/definitions/User'
+      responses:
+        201:
+          description: OK
+        400:
+          description: invalid input, object invalid
+        401:
+          description: Unauthorize
+        500:
+          description: Internal Server Error
+  /user/{username}:
+    get:
+      tags:
+      - "users"
+      summary: Return a user by Username.
+      parameters:
+      - in: header
+        name: Authorization
+        type: string
+        description: Access Token in system
+        default: "Bearer "
+      - in: path
+        name: username
+        required: true
+        type: string
+        description: Parameter description in Markdown.
+      responses:
+        200:
+          description: OK
+        401:
+          description: Unauthorized
+        500:
+          description: Internal Server Error
+    put:
+      tags:
+      - "users"
+      summary: Update user by Username.
+      parameters:
+      - in: header
+        name: Authorization
+        type: string
+        description: Access Token in system
+        default: "Bearer "
+      - in: path
+        name: username
+        required: true
+        type: string
+        description: Parameter description in Markdown.
+      - in: body
+        name: userInfo
+        description: Parameter description in Markdown.
+        schema:
+          $ref: '#/definitions/User'
+      responses:
+        200:
+          description: user updated
+        401:
+          description: Unauthorized
+        500:
+          description: Internal Server Error
+  /service:
+    post:
+      tags:
+      - "services"
+      summary: add service
+      description: service in the system
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: header
+        name: Authorization
+        type: string
+        description: Access Token in system
+        default: "Bearer "
+      - in: body
+        name: service
+        description: service in system
+        schema:
+          $ref: '#/definitions/Service'
+      responses:
+        201:
+          description: service created
+        400:
+          description: invalid input, object invalid
+        401:
+          description: Unauthorized
+        500:
+          description: Internal Server Error
+  /private/{name}/{role}:
+    get:
+      tags:
+      - "privates"
+      summary: Returns a service by Name and Role.
+      parameters:
+      - in: path
+        name: name
+        required: true
+        type: string
+        description: Name Service.
+      - in: path
+        name: role
+        required: true
+        type: string
+        description: Role.
+      responses:
+        200:
+          description: Connect {name} {role} success
+        401:
+          description: Unauthorized
+        500:
+          description: Internal Server Error
+definitions:
+  Login:
+    type: object
+    properties:
+      username:
+        type: string
+        example: notto
+      password:
+        type: string
+        example: notto@123
+  User:
+    type: object
+    properties:
+      username:
+        type: string
+        example: c
+      password:
+        type: string
+        example: c@123
+      status:
+        type: string
+        example: use
+      services:
+        type: object
+        properties:
+          name: 
+            type: string
+            example: joget
+          role:
+            type: string
+            example: admin
+          status:
+            type: string
+            example: use
+  Refresh_Token:
+    type: object
+    properties:
+      refreshToken:
+        type: string
+        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MDA4MzYwNjAsImV4cCI6MTYzMjM5MzY2MCwiYXVkIjoiNWY1OWFlYmIzZDk2N2U0Mjg0NDZhZjE4IiwiaXNzIjoiamFja21vYmlsZS5jb20ifQ.ffYG2x1IGVW_SyY5c7gyuaG2KUr0DqQYRjGfLOQJA7k
+  Service:
+    type: object
+    properties:
+      name:
+        type: string
+        example: buu
+      role:
+        type: string
+        example: user
+      status:
+        type: string
+        example: use
+      
