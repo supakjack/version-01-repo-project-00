@@ -13,7 +13,6 @@ tags:
   - name: account
     description: REST API for account-only calls
 paths:
-  
   /account:
     post:
       tags:
@@ -27,6 +26,7 @@ paths:
       parameters:
         - in: header
           name: Authorization
+          type: string
           description: JWT Token
         - in: body
           name: account
@@ -54,6 +54,7 @@ paths:
       parameters:
         - in: header
           name: Authorization
+          type: string
           description: JWT Token
         - in: query
           name: id
@@ -77,6 +78,7 @@ paths:
       parameters:
         - in: header
           name: Authorization
+          type: string
           description: JWT Token
         - in: query
           name: id
@@ -106,6 +108,7 @@ paths:
       parameters:
         - in: header
           name: Authorization
+          type: string
           description: JWT Token
         - in: query
           name: id
@@ -118,8 +121,7 @@ paths:
           description: not found
         500:
           description: internal server error
-  
-    
+
   /auth:
     post:
       tags:
@@ -133,6 +135,7 @@ paths:
       parameters:
         - in: header
           name: Authorization
+          type: string
           description: JWT Token
         - in: body
           name: auth
@@ -160,6 +163,7 @@ paths:
       parameters:
         - in: header
           name: Authorization
+          type: string
           description: JWT Token
         - in: query
           name: id
@@ -183,6 +187,7 @@ paths:
       parameters:
         - in: header
           name: Authorization
+          type: string
           description: JWT Token
         - in: query
           name: id
@@ -212,6 +217,7 @@ paths:
       parameters:
         - in: header
           name: Authorization
+          type: string
           description: JWT Token
         - in: query
           name: id
@@ -224,8 +230,7 @@ paths:
           description: not found
         500:
           description: internal server error
-  
-      
+
   /service:
     post:
       tags:
@@ -239,6 +244,7 @@ paths:
       parameters:
         - in: header
           name: Authorization
+          type: string
           description: JWT Token
         - in: body
           name: service
@@ -266,6 +272,7 @@ paths:
       parameters:
         - in: header
           name: Authorization
+          type: string
           description: JWT Token
         - in: query
           name: id
@@ -289,6 +296,7 @@ paths:
       parameters:
         - in: header
           name: Authorization
+          type: string
           description: JWT Token
         - in: query
           name: id
@@ -318,6 +326,7 @@ paths:
       parameters:
         - in: header
           name: Authorization
+          type: string
           description: JWT Token
         - in: query
           name: id
@@ -330,7 +339,6 @@ paths:
           description: not found
         500:
           description: internal server error
-  
 
   /auth/login:
     post:
@@ -378,6 +386,7 @@ paths:
       parameters:
         - in: header
           name: Authorization
+          type: string
           description: JWT Token
       responses:
         200:
@@ -391,7 +400,7 @@ definitions:
     type: object
     properties:
       _id:
-        type: objectId
+        type: string
         example: 5f87ebde67de9115b4a45a1c
       username:
         type: string
@@ -412,7 +421,7 @@ definitions:
     type: object
     properties:
       _id:
-        type: objectId
+        type: string
         example: 5f87ebde67de9115b4a45a1c
       username:
         type: string
@@ -433,7 +442,7 @@ definitions:
     type: object
     properties:
       _id:
-        type: objectId
+        type: string
         example: 5f87ebde67de9115b4a45a1c
       name:
         type: string
@@ -454,13 +463,13 @@ definitions:
     type: object
     properties:
       _id:
-        type: objectId
+        type: string
         example: 5f87ebde67de9115b4a45a1c
       service:
-        type: objectId
+        type: string
         example: 5f87ebde67de9115b4a45a11
       account:
-        type: objectId
+        type: string
         example: 5f87ebde67de9115b4a45a12
       status:
         type: string
@@ -472,13 +481,13 @@ definitions:
     type: object
     properties:
       _id:
-        type: objectId
+        type: string
         example: 5f87ebde67de9115b4a45a1c
       auth:
-        type: objectId
+        type: string
         example: 5f87ebde67de9115b4a45a11
       role:
-        type: objectId
+        type: string
         example: 5f87ebde67de9115b4a45a12
       status:
         type: string
